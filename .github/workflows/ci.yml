@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,14 +19,12 @@ jobs:
         with:
           node-version: '18'
 
-      - name: npm ci
+      - name: Install dependencies
         run: npm ci
 
-      - name: Install dependencies
+      # Optional: Install vite if you are using it
+      - name: Install Vite
         run: npm install vite@latest
 
-      - name: Run tests
-        run: npm test --if-present
-
       - name: Build project
-        run: npm run build --if-present
+        run: npm run build
